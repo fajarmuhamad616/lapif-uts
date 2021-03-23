@@ -10,9 +10,11 @@ function validateForm() {
     let deskripsi = document.getElementById("deskripsi").value == "" ? "Deskripsi, " : "";
     let tanggal = document.getElementById("tanggal").value == "" ? "Tanggal, " : "";
 
-    console.log(nama);
-
     let notification = nama + nomor + status + email + telp + rujukan + kategori + judul + deskripsi + tanggal;
+
+    if (!emailCheck()) {
+        alert("Format email tidak benar");
+    }
 
     if (!(notification == "")) {
         alert(notification + " belum diisi");
@@ -20,6 +22,16 @@ function validateForm() {
         alert("Laporan telah dikirim");
     }
 
+}
+
+function emailCheck() {
+    let email = document.getElementById("email").value;
+    
+    for (let i=0; i<email.length; i++) {
+        if (email[i] == '@') {
+            return true;
+        }
+    }
 }
 
 function redirect() {
